@@ -1,35 +1,25 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import './styles/main.scss'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  // Note: I understand this API key will be exposed in the bundle,
+  // I am doing this as the project does not have a backend  
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+  const WEATHER_API_URL = "http://api.weatherapi.com/v1/forecast.json?aqi=no&alerts=no"
+  // const userLongitude = `key=${}`
+  // const userLatitude = 
+  // const userLocation =  `q=${userLatitude},${userLongitude}`//q=51.5171,-0.1062
+  const daysRequest = `days=5`//TEMPORARY
+  console.log(apiKey)
+    return(
+      <>
+        <h1>Still in testing</h1>
+      </>
+    )
 }
 
 export default App
