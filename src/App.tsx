@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './styles/main.scss';
+import Greeting from "./components/greeting/Greeting";
+
 import Swal from 'sweetalert2';
 
 function App() {
   const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
   const [weatherData, setWeatherData] = useState<string>("");
-
+  const userTimeInHour: number = new Date().getHours();
   // Note: I understand this API key will be exposed in the bundle,
   // Done on purpose as the project does not have a backend  
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
@@ -48,10 +50,9 @@ function App() {
       }
     }
   }, ([location]))
-  console.log("weatherData: ", weatherData)
   return (
     <>
-      <h1>Still in testing</h1>
+      <Greeting userTimeInHour={userTimeInHour}/>
     </>
   )
 }
