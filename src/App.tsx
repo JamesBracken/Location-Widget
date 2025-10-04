@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
-import './styles/main.scss'
+import { useEffect, useState } from 'react';
+import './styles/main.scss';
+import Swal from 'sweetalert2';
 
 function App() {
   const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
-  const [weatherData, setWeatherData] = useState("");
+  const [weatherData, setWeatherData] = useState<string>("");
+
   // Note: I understand this API key will be exposed in the bundle,
   // Done on purpose as the project does not have a backend  
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-  const WEATHER_API_URL = "https://api.weatherapi.com/v1/forecast.json?"
+  const WEATHER_API_URL: string = "https://api.weatherapi.com/v1/forecast.json?"
   const daysRequest: number = 5;//TEMPORARY
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -17,11 +19,21 @@ function App() {
           longitude: pos.coords.longitude
         })
       }, (exception) => {
-        // IN FUTURE addition of graceful handling via modal or sweetalert
+        Swal.fire({ // Sweetalert2 for graceful user feedback
+          title: 'Location permissions denied',
+          text: 'The website may not function as intended without location permissions',
+          icon: 'error',
+          confirmButtonText: 'I understand'
+        })
         console.log("Exception: ", exception.message)
       })
     } else {
-      // IN FUTURE addition of graceful handling via modal or sweetalert
+      Swal.fire({ // Sweetalert2 for graceful user feedback
+        title: 'Error',
+        text: 'Unfortunately this browser does not support user location tools. This may affect application functionality',
+        icon: 'error',
+        confirmButtonText: 'I understand'
+      })
       console.log("Geolocation is unavailable on this browser")
     }
   }, []);
