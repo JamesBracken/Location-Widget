@@ -1,0 +1,23 @@
+.hourWeather {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e8e8e8;
+
+    &__time {
+        font-weight: 500;
+        text-align: center;
+        margin: 5px 1px;
+    }
+
+    &__image {
+        padding: 0 1px;
+        height: 50px;
+        width: 50px;
+    }
+
+    &__temp {
+        font-weight: 500;
+        text-align: center;
+        margin: 5px 1px;
+    }
+}
