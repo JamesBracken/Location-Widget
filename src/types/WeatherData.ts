@@ -1,6 +1,14 @@
 export interface WeatherData {
     location: Record<string, unknown>, // TEMPORARILY PLACING, DEL IF UNUSED
-    current: Record<string, unknown>,// TEMPORARILY PLACING, DEL IF UNUSED
+    current: {
+        condition : {
+            text: string;
+            icon : string;
+        },
+        heatindex_c : number;
+        is_day: number;
+        last_updated : string;
+    };
     forecast: {
         forecastday: {
             date: string;

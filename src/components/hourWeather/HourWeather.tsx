@@ -7,11 +7,6 @@ interface HourWeatherDataProps {
 }
 
 const HourWeather = ({ hourWeatherData }: HourWeatherDataProps) => {
-
-    //Display data in this format
-    //Hour
-    //Weather img icon
-    //Temperature
     const time = hourWeatherData.time.slice(11, 13);
     return (
         <div className="hourWeather">

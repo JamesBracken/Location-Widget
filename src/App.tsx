@@ -52,13 +52,25 @@ function App() {
       }
     }
   }, ([location]))
-  //console.log("weatherData", weatherData?.forecast?.forecastday[0].hour)
-  // console.log("weatherData", weatherData)
+  // console.log("weatherData", weatherData?.forecast?.forecastday[0].hour)
+  console.log("weatherData", weatherData)
+  type CurrentWeatherData = WeatherData["current"];
+  const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
+    condition: {
+      text: "",
+      icon: "",
+    },
+    heatindex_c: 0,
+    is_day: 0,
+    last_updated: "",
+  };
   const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
   return (
     <>
       <Greeting userTimeInHour={userTimeInHour} />
-      <HourlyWeather hourlyWeatherData={hourlyWeatherData} />
+      <HourlyWeather
+        hourlyWeatherData={hourlyWeatherData}
+        currentWeatherData={currentWeatherData} />
     </>
   )
 }
