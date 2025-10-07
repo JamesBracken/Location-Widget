@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import './styles/main.scss';
-import Greeting from "./components/greeting/Greeting";
+import Greeting from "./components/greeting/Greeting.tsx";
+import type { WeatherData } from "./types/WeatherData.ts"
 
 import Swal from 'sweetalert2';
+import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 
 function App() {
   const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
-  const [weatherData, setWeatherData] = useState<string>("");
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const userTimeInHour: number = new Date().getHours();
   // Note: I understand this API key will be exposed in the bundle,
-  // Done on purpose as the project does not have a backend  
-  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+  // Done on purpose as the project does not have a backend
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
   const WEATHER_API_URL: string = "https://api.weatherapi.com/v1/forecast.json?"
   const daysRequest: number = 5;//TEMPORARY
   useEffect(() => {
@@ -27,7 +29,7 @@ function App() {
           icon: 'error',
           confirmButtonText: 'I understand'
         })
-        console.log("Exception: ", exception.message)
+        console.error("Exception: ", exception.message)
       })
     } else {
       Swal.fire({ // Sweetalert2 for graceful user feedback
@@ -36,23 +38,27 @@ function App() {
         icon: 'error',
         confirmButtonText: 'I understand'
       })
-      console.log("Geolocation is unavailable on this browser")
+      console.error("Geolocation is unavailable on this browser")
     }
   }, []);
   useEffect(() => {
     if (location != null) {
       try {
-        fetch(`${WEATHER_API_URL}key=${apiKey}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`)
+        fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`)
           .then(res => res.json())
           .then(data => setWeatherData(data))
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     }
   }, ([location]))
+  //console.log("weatherData", weatherData?.forecast?.forecastday[0].hour)
+  // console.log("weatherData", weatherData)
+  const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
   return (
     <>
-      <Greeting userTimeInHour={userTimeInHour}/>
+      <Greeting userTimeInHour={userTimeInHour} />
+      <HourlyWeather hourlyWeatherData={hourlyWeatherData} />
     </>
   )
 }
