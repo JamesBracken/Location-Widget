@@ -1,0 +1,22 @@
+.HourlyWeather {
+    background-color: #89b2ff; // Temporary color until dynamic BG added
+    border-radius: 8px;
+    padding: 10px 4px;
+    width: 290px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__innerContainer {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
+
+        &--scrollable {
+            width: 290px;
+            overflow-x: scroll;
+        }
+    }
+
+}
