@@ -10,8 +10,8 @@ interface HourlyWeatherDataProps {
 const HourlyWeather = ({ hourlyWeatherData }: HourlyWeatherDataProps) => {
     console.log(hourlyWeatherData)
     return (
-        <div className="HourlyWeather">
-            <div className="HourlyWeather__innerContainer HourlyWeather__innerContainer--scrollable">
+        <div className="hourlyWeather">
+            <div className="hourlyWeather__innerContainer hourlyWeather__innerContainer--scrollable">
                 {hourlyWeatherData.map((hourWeatherData, index) => <HourWeather key={index} hourWeatherData={hourWeatherData} />)}
             </div>
         </div>
