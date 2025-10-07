@@ -36,8 +36,16 @@
         width: 35px;
     }
 
+    &__conditionText {
+        font-size: 14px;
+    }
+
     &__currentTemp {
-        font-size: 30px;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+    &__currentLocation {
         font-weight: 500;
     }
 }

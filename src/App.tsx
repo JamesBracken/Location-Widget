@@ -10,11 +10,22 @@ function App() {
   const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const userTimeInHour: number = new Date().getHours();
-  // Note: I understand this API key will be exposed in the bundle,
-  // Done on purpose as the project does not have a backend
+  // Note: I understand this API key will be exposed in the bundle, done on purpose as the project does not have a backend
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
   const WEATHER_API_URL: string = "https://api.weatherapi.com/v1/forecast.json?"
   const daysRequest: number = 5;//TEMPORARY
+  const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
+  const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
+    condition: {
+      text: "",
+      icon: "",
+    },
+    heatindex_c: 0,
+    is_day: 0,
+    last_updated: "",
+  };
+
+  type CurrentWeatherData = WeatherData["current"];
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(pos => {
@@ -54,23 +65,17 @@ function App() {
   }, ([location]))
   // console.log("weatherData", weatherData?.forecast?.forecastday[0].hour)
   console.log("weatherData", weatherData)
-  type CurrentWeatherData = WeatherData["current"];
-  const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
-    condition: {
-      text: "",
-      icon: "",
-    },
-    heatindex_c: 0,
-    is_day: 0,
-    last_updated: "",
-  };
-  const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
+  const currentLocationData = weatherData?.location ?? {
+    name: ""
+  }
+
   return (
     <>
       <Greeting userTimeInHour={userTimeInHour} />
       <HourlyWeather
         hourlyWeatherData={hourlyWeatherData}
-        currentWeatherData={currentWeatherData} />
+        currentWeatherData={currentWeatherData}
+        currentLocation={currentLocationData} />
     </>
   )
 }

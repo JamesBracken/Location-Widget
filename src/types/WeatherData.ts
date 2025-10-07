@@ -1,5 +1,7 @@
 export interface WeatherData {
-    location: Record<string, unknown>, // TEMPORARILY PLACING, DEL IF UNUSED
+    location: {
+        name : string;
+    },
     current: {
         condition : {
             text: string;
