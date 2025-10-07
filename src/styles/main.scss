@@ -1,6 +1,6 @@
+@use "./base/reset";
 @use "../components/hourWeather/HourWeather.scss";
 @use "../components/hourlyWeather/HourlyWeather.scss";
-
 
 h1 {
     color: yellow !important;

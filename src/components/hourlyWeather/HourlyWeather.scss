@@ -3,7 +3,6 @@
     border-radius: 8px;
     padding: 10px 4px;
     width: 290px;
-    display: flex;
     margin-left: auto;
     margin-right: auto;
 
@@ -17,6 +16,28 @@
             width: 290px;
             overflow-x: scroll;
         }
+
     }
 
+    &__rightHeader {
+        display: flex;
+        align-items: end;
+        flex-direction: column;
+        margin: 3px 5px 5px 0;
+        margin-left: auto;
+    }
+
+    &__leftHeader {
+        margin: 0 5px 5px 3px;
+    }
+
+    &__conditionIcon {
+        height: 35px;
+        width: 35px;
+    }
+
+    &__currentTemp {
+        font-size: 30px;
+        font-weight: 500;
+    }
 }
