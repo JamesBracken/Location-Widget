@@ -4,28 +4,25 @@ import type { WeatherData } from "../../types/WeatherData";
 
 type HourlyWeatherData = WeatherData["forecast"]["forecastday"][number]["hour"];
 type CurrentWeatherData = WeatherData["current"];
-type CurrenLocationData = WeatherData["location"];
+type CurrentLocationData = WeatherData["location"];
 
 interface HourlyWeatherDataProps {
     hourlyWeatherData: HourlyWeatherData,
     currentWeatherData: CurrentWeatherData,
-    currentLocation: CurrenLocationData
+    currentLocation: CurrentLocationData,
+    userDateTime: Date
 }
 
-const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation }: HourlyWeatherDataProps) => {
-    const currentTemp = JSON.stringify(currentWeatherData.heatindex_c).slice(0, 2)
+const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation, userDateTime }: HourlyWeatherDataProps) => {
+    //console.log("hourlyWeatherData: ", hourlyWeatherData)
+    const currentTemp: string = JSON.stringify(currentWeatherData.heatindex_c).slice(0, 2)
+    const filteredData = hourlyWeatherData.filter(item => {
+        const itemDateTime = new Date(item.time);
+        if (itemDateTime.getDate > userDateTime.getDate) return true; // Check if the date item date is greater than the current date 
+        return itemDateTime.getHours() >= userDateTime.getHours()
+    })
     // console.log(hourlyWeatherData)
-    //Structure header like this
-    // LEFT SIDE
-    // City
-    // Current temperature
-    // 
-    // RIGHT SIDE
-    // Current weather icon
-    // Current weather description
-    // Todays high and low
-    // 
-    console.log(currentWeatherData)
+    // console.log(currentWeatherData)
     return (
         <div className="hourlyWeather">
             <div className="hourlyWeather__innerContainer">
@@ -35,11 +32,11 @@ const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation 
                 </div>
                 <div className="hourlyWeather__rightHeader">
                     < img className="hourlyWeather__conditionIcon" src={currentWeatherData.condition.icon} />
-                    < p className="hourlyWeather__conditionText"> {currentWeatherData.condition.text}</p >
+                    < p className="hourlyWeather__conditionText" > {currentWeatherData.condition.text}</p >
                 </div>
             </div>
             <div className="hourlyWeather__innerContainer hourlyWeather__innerContainer--scrollable">
-                {hourlyWeatherData.map((hourWeatherData, index) => <HourWeather key={index} hourWeatherData={hourWeatherData} />)}
+                {filteredData.map((hourWeatherData, index) => <HourWeather key={index} hourWeatherData={hourWeatherData} />)}
             </div>
         </div>
     )
@@ -55,7 +52,7 @@ export default HourlyWeather;
 //
 // STYLING
 // Create a background
-// 
+//
 //
 //
 // Make component responsive

@@ -9,11 +9,11 @@ import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 function App() {
   const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const userTimeInHour: number = new Date().getHours();
+  const userDateTime: Date = new Date();
   // Note: I understand this API key will be exposed in the bundle, done on purpose as the project does not have a backend
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
   const WEATHER_API_URL: string = "https://api.weatherapi.com/v1/forecast.json?"
-  const daysRequest: number = 5;//TEMPORARY
+  const daysRequest: number = 3;// Weather API free plan has a limit of 3 days data 
   const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
   const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
     condition: {
@@ -54,7 +54,7 @@ function App() {
   }, []);
   useEffect(() => {
     if (location != null) {
-      try {
+      try { // Weather API free plan has a limit of 3 days data 
         fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`)
           .then(res => res.json())
           .then(data => setWeatherData(data))
@@ -63,19 +63,20 @@ function App() {
       }
     }
   }, ([location]))
+
   // console.log("weatherData", weatherData?.forecast?.forecastday[0].hour)
   console.log("weatherData", weatherData)
   const currentLocationData = weatherData?.location ?? {
     name: ""
   }
-
   return (
     <>
-      <Greeting userTimeInHour={userTimeInHour} />
+      <Greeting userDateTime={userDateTime} />
       <HourlyWeather
         hourlyWeatherData={hourlyWeatherData}
         currentWeatherData={currentWeatherData}
-        currentLocation={currentLocationData} />
+        currentLocation={currentLocationData}
+        userDateTime={userDateTime} />
     </>
   )
 }

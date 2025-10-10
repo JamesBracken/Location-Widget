@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-const Greeting = ({ userTimeInHour }: { userTimeInHour: number }) => {
+const Greeting = ({ userDateTime }: { userDateTime: Date }) => {
 
     const [greeting, setGreeting] = useState<string>("");
 
     useEffect(() => {
-        if (userTimeInHour >= 0 && userTimeInHour < 12) {
+        if (userDateTime.getHours() >= 0 && userDateTime.getHours() < 12) {
             setGreeting("Good morning!");
-        } else if (userTimeInHour >= 12 && userTimeInHour < 18) {
+        } else if (userDateTime.getHours() >= 12 && userDateTime.getHours() < 18) {
             setGreeting("Good Afternoon!");
-        } else if (userTimeInHour >= 18 && userTimeInHour < 24) {
+        } else if (userDateTime.getHours() >= 18 && userDateTime.getHours() < 24) {
             setGreeting("Good evening!");
         }
-    }, [userTimeInHour])
+    }, [userDateTime])
 
     return (
         <>
