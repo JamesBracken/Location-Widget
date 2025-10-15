@@ -59,32 +59,32 @@ const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) 
     useEffect(() => {
         if (isDay === 1) {
 
-            if (sunnyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/sun.jpg")
-            } else if (cloudyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/clouds.jpg")
-            } else if (rainyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/rain.jpg")
-            } else if (snowConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/snow.jpg")
-            } else if (thunderConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/thunder.jpg")
+            if (conditions.sunnyConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/sun.jpg")
+            } else if (conditions.cloudyConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/clouds.jpg")
+            } else if (conditions.rainyConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/rain.jpg")
+            } else if (conditions.snowConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/snow.jpg")
+            } else if (conditions.thunderConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/thunder.jpg")
             } else {
-                setBackgroundImagePath("./src/assets/images/sun.jpg")
+                setBackgroundImagePath("/images/sun.jpg")
             }
         } else if (isDay === 0) {
             if (currentCondition === "Clear") {
-                setBackgroundImagePath("./src/assets/images/clear-night.jpg")
-            } else if (cloudyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/cloudy-night.jpg")
-            } else if (rainyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/rainy-night.jpg")
-            } else if (snowConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/snow.jpg")
-            } else if (thunderConditions.includes(currentCondition)) {
-                setBackgroundImagePath("./src/assets/images/thunder.jpg")
+                setBackgroundImagePath("/images/clear-night.jpg")
+            } else if (conditions.cloudyConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/cloudy-night.jpg")
+            } else if (conditions.rainyConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/rainy-night.jpg")
+            } else if (conditions.snowConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/snow.jpg")
+            } else if (conditions.thunderConditions.includes(currentCondition)) {
+                setBackgroundImagePath("/images/thunder.jpg")
             } else {
-                setBackgroundImagePath("./src/assets/images/clear-night.jpg")
+                setBackgroundImagePath("/images/clear-night.jpg")
             }
         }
     }, [currentCondition, isDay])
