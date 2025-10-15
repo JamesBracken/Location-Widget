@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import './styles/main.scss';
 import Greeting from "./components/greeting/Greeting.tsx";
 import type { WeatherData } from "./types/WeatherData.ts"
+import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
+import DynamicBackground from './components/dynamicBackground/DynamicBackground.tsx';
 
 import Swal from 'sweetalert2';
-import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 
 function App() {
   const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
@@ -65,7 +66,8 @@ function App() {
   }, ([location]))
 
   // console.log("weatherData", weatherData?.forecast?.forecastday[0].hour)
-  console.log("weatherData", weatherData)
+  //console.log("currentWeatherData", currentWeatherData)
+  // console.log("weatherData", weatherData)
   const currentLocationData = weatherData?.location ?? {
     name: ""
   }
@@ -77,6 +79,9 @@ function App() {
         currentWeatherData={currentWeatherData}
         currentLocation={currentLocationData}
         userDateTime={userDateTime} />
+      <DynamicBackground
+        currentCondition={currentWeatherData.condition.text}
+        isDay={currentWeatherData.is_day} />
     </>
   )
 }
