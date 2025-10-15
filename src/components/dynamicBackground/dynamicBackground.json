@@ -1,0 +1,44 @@
+{
+    "sunnyConditions": [
+        "Sunny",
+        "day"
+    ],
+    "cloudyConditions": [
+        "Partly cloudy",
+        "Cloudy",
+        "Overcast",
+        "Mist",
+        "Fog",
+        "Freezing fog"
+    ],
+    "rainyConditions": [
+        "Patchy rain possible",
+        "Patchy light drizzle",
+        "Light drizzle",
+        "Freezing drizzle",
+        "Heavy freezing drizzle",
+        "Patchy light rain",
+        "Light rain",
+        "Moderate rain at times",
+        "Moderate rain",
+        "Heavy rain at times",
+        "Heavy rain",
+        "Light freezing rain",
+        "Moderate or heavy freezing rain"
+    ],
+    "snowConditions": [
+        "Patchy snow possible",
+        "Patchy sleet possible",
+        "Patchy freezing drizzle possible",
+        "Blowing snow",
+        "Blizzard",
+        "Light sleet",
+        "Moderate or heavy sleet",
+        "Patchy light snow",
+        "Light snow",
+        "Patchy moderate snow"
+    ],
+    "thunderConditions": [
+        "Thundery outbreaks possible"
+    ]
+}
