@@ -15,9 +15,9 @@ const Greeting = ({ userDateTime }: { userDateTime: Date }) => {
     }, [userDateTime])
 
     return (
-        <>
-            <h1>{greeting}</h1>
-        </>
+        <div className="greeting">
+            <h1 className="greeting__heading">{greeting}</h1>
+        </div>
     )
 }
 

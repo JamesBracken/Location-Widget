@@ -73,12 +73,15 @@ function App() {
   }
   return (
     <>
-      <Greeting userDateTime={userDateTime} />
-      <HourlyWeather
-        hourlyWeatherData={hourlyWeatherData}
-        currentWeatherData={currentWeatherData}
-        currentLocation={currentLocationData}
-        userDateTime={userDateTime} />
+      <div className="overlay">
+        <Greeting userDateTime={userDateTime} />
+        <p style={{paddingBottom: 15}}>Here are our provided widgets using location services</p>
+        <HourlyWeather
+          hourlyWeatherData={hourlyWeatherData}
+          currentWeatherData={currentWeatherData}
+          currentLocation={currentLocationData}
+          userDateTime={userDateTime} />
+      </div>
       <DynamicBackground
         currentCondition={currentWeatherData.condition.text}
         isDay={currentWeatherData.is_day} />

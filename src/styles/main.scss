@@ -1,7 +1,9 @@
 @use "./base/reset";
 @use "./base/typography";
 @use "./base/base";
+@use "./layout/overlay";
 
 @use "../components/hourWeather/HourWeather.scss";
 @use "../components/hourlyWeather/HourlyWeather.scss";
 @use "../components/dynamicBackground/DynamicBackground.scss";
+@use "../components/greeting/Greeting.scss";
