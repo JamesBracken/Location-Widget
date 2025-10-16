@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import type { WeatherData } from "../types/WeatherData";
 
+import Swal from "sweetalert2";
+
 interface useWeatherProps {
     currentDate: Date
 }

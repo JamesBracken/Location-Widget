@@ -1,4 +1,3 @@
-import React from "react";
 import HourWeather from "../hourWeather/HourWeather";
 import type { WeatherData } from "../../types/WeatherData";
 
