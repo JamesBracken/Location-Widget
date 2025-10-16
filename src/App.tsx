@@ -5,12 +5,15 @@ import type { WeatherData } from "./types/WeatherData.ts"
 import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 import DynamicBackground from './components/dynamicBackground/DynamicBackground.tsx';
 import { useWeather } from './hooks/useWeather.ts';
+import { useWeatherTimer } from "./hooks/useWeatherTimer.ts";
 
 import Swal from 'sweetalert2';
 
 function App() {
-  const weatherData = useWeather();
+  const currentDate: Date = useWeatherTimer();
+  const weatherData = useWeather({currentDate});
   const userDateTime: Date = new Date();
+
   const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
   type CurrentWeatherData = WeatherData["current"];
   const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
@@ -26,6 +29,7 @@ function App() {
   const currentLocationData = weatherData?.location ?? {
     name: ""
   }
+
   return (
     <>
       <div className="overlay">
