@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './styles/main.scss';
 import Greeting from "./components/greeting/Greeting.tsx";
 import type { WeatherData } from "./types/WeatherData.ts"
@@ -6,8 +5,6 @@ import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 import DynamicBackground from './components/dynamicBackground/DynamicBackground.tsx';
 import { useWeather } from './hooks/useWeather.ts';
 import { useWeatherTimer } from "./hooks/useWeatherTimer.ts";
-
-import Swal from 'sweetalert2';
 
 function App() {
   const currentDate: Date = useWeatherTimer();

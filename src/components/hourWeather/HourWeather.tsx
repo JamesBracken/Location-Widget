@@ -1,4 +1,3 @@
-import React from "react";
 import type { WeatherData } from "../../types/WeatherData";
 
 type HourWeatherData = WeatherData["forecast"]["forecastday"][number]["hour"][number];
