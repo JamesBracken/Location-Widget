@@ -9,35 +9,36 @@ interface DynamicBackgroundProps {
 
 const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) => {
     const [backgroundImagePath, setBackgroundImagePath] = useState<string>("");
+    const base = import.meta.env.BASE_URL;
     useEffect(() => {
         if (isDay === 1) {
 
             if (weatherCategories.sunnyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/sun.jpg")
+                setBackgroundImagePath(`${base}images/sun.jpg`)
             } else if (weatherCategories.cloudyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/clouds.jpg")
+                setBackgroundImagePath(`${base}images/clouds.jpg`)
             } else if (weatherCategories.rainyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/rain.jpg")
+                setBackgroundImagePath(`${base}images/rain.jpg`)
             } else if (weatherCategories.snowConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/snow.jpg")
+                setBackgroundImagePath(`${base}images/snow.jpg`)
             } else if (weatherCategories.thunderConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/thunder.jpg")
+                setBackgroundImagePath(`${base}images/thunder.jpg`)
             } else {
-                setBackgroundImagePath("/images/sun.jpg")
+                setBackgroundImagePath(`${base}images/sun.jpg`)
             }
         } else if (isDay === 0) {
             if (currentCondition === "Clear") {
-                setBackgroundImagePath("/images/clear-night.jpg")
+                setBackgroundImagePath(`${base}images/clear-night.jpg`)
             } else if (weatherCategories.cloudyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/cloudy-night.jpg")
+                setBackgroundImagePath(`${base}images/cloudy-night.jpg`)
             } else if (weatherCategories.rainyConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/rainy-night.jpg")
+                setBackgroundImagePath(`${base}images/rainy-night.jpg`)
             } else if (weatherCategories.snowConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/snow.jpg")
+                setBackgroundImagePath(`${base}images/snow.jpg`)
             } else if (weatherCategories.thunderConditions.includes(currentCondition)) {
-                setBackgroundImagePath("/images/thunder.jpg")
+                setBackgroundImagePath(`${base}images/thunder.jpg`)
             } else {
-                setBackgroundImagePath("/images/clear-night.jpg")
+                setBackgroundImagePath(`${base}images/clear-night.jpg`)
             }
         }
     }, [currentCondition, isDay])
