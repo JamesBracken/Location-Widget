@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
-import type { WeatherData } from "../types/WeatherData";
 
 import Swal from "sweetalert2";
+
+import type { WeatherData } from "../types/WeatherData";
 
 interface useWeatherProps {
     currentDate: Date
 }
 
 export function useWeather({ currentDate }: useWeatherProps) {
+
     const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-    console.log("INVOKING USEWEATHER HOOK")
+
     const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
     const WEATHER_API_URL: string = "https://api.weatherapi.com/v1/forecast.json?"
-    const daysRequest: number = 3;// Weather API free plan has a limit of 3 days data 
+    const daysRequest: number = 3;// Weather API free plan has a limit of 3 days data
+
     useEffect(() => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(pos => {
@@ -44,7 +47,7 @@ export function useWeather({ currentDate }: useWeatherProps) {
         if (location != null) {
             const currentHour = currentDate.getHours();
             if (!weatherData || new Date(weatherData.current.last_updated).getHours() != currentHour) {
-                try { // Weather API free plan has a limit of 3 days data 
+                try {
                     fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`)
                         .then(res => res.json())
                         .then(data => setWeatherData(data))
@@ -54,6 +57,5 @@ export function useWeather({ currentDate }: useWeatherProps) {
             }
         }
     }, ([location, currentDate]))
-
     return weatherData;
 }

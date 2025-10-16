@@ -8,8 +8,11 @@ interface DynamicBackgroundProps {
 }
 
 const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) => {
+    
     const [backgroundImagePath, setBackgroundImagePath] = useState<string>("");
+    
     const base = import.meta.env.BASE_URL;
+    
     useEffect(() => {
         if (isDay === 1) {
 

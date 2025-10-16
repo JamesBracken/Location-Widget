@@ -1,5 +1,6 @@
-import HourWeather from "../hourWeather/HourWeather";
 import type { WeatherData } from "../../types/WeatherData";
+
+import HourWeather from "../hourWeather/HourWeather";
 
 type HourlyWeatherData = WeatherData["forecast"]["forecastday"][number]["hour"];
 type CurrentWeatherData = WeatherData["current"];
@@ -13,15 +14,12 @@ interface HourlyWeatherDataProps {
 }
 
 const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation, userDateTime }: HourlyWeatherDataProps) => {
-    //console.log("hourlyWeatherData: ", hourlyWeatherData)
     const currentTemp: string = JSON.stringify(currentWeatherData.heatindex_c).slice(0, 2)
     const filteredData = hourlyWeatherData.filter(item => {
         const itemDateTime = new Date(item.time);
-        if (itemDateTime.getDate > userDateTime.getDate) return true; // Check if the date item date is greater than the current date 
+        if (itemDateTime.getDate > userDateTime.getDate) return true; 
         return itemDateTime.getHours() >= userDateTime.getHours()
     })
-    // console.log(hourlyWeatherData)
-    // console.log(currentWeatherData)
     return (
         <div className="hourlyWeather">
             <div className="hourlyWeather__innerContainer">
@@ -42,21 +40,3 @@ const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation,
 }
 
 export default HourlyWeather;
-
-// NOTES ---------------------------------------
-// Add logic to display only hourly data from current time instead of 0
-//
-//
-//
-//
-// STYLING
-// Create a background
-//
-//
-//
-// Make component responsive
-// Dynamically change the background according to current weather conditions
-
-// EXTENSION
-// Add date selection to view hourly for different dates
-// For first time display Now instead

@@ -16,19 +16,4 @@ const HourWeather = ({ hourWeatherData }: HourWeatherDataProps) => {
     )
 }
 
-
 export default HourWeather;
-
-// NOTES ---------------------
-// Clean up the time and display only the hour FINISHED
-// Display content vertically FINISHED
-// Reduce weather img sizes FINISHED
-//
-//
-// Further refine the data passed as props, curently passing large packages of excess data
-// STYLING
-// Add f-weight temperature and time FINISHED
-// Adjust P-M in background and all content FINISHED
-//
-//
-//

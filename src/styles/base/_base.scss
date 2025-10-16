@@ -12,6 +12,10 @@ img {
     object-fit: cover;
 }
 
+p {
+    text-align: center;
+}
+
 #root {
     min-height: 100%;
     display: flex;
@@ -19,8 +23,4 @@ img {
     align-items: center;
     display: flex;
     flex-direction: column;
-}
-
-p {
-    text-align: center;
 }

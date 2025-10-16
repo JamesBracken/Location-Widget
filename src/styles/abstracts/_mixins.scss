@@ -2,8 +2,6 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 
-
-
 @mixin xs-screen () {
     @media only screen and (max-width:$sm) {
         @content;
