@@ -28,4 +28,3 @@ export interface WeatherData {
         }[];
     };
 }
-// console.log("weatherData", weatherData?.forecast?.forecastday)
