@@ -1,4 +1,11 @@
-.greeting__heading {
-    text-align: center;
-    padding: 15px 0;
+.greeting {
+
+    &__heading {
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    &__description {
+        margin: 3px 8px;
+    }
 }

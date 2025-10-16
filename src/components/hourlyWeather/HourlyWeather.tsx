@@ -27,7 +27,7 @@ const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation,
         <div className="hourlyWeather">
             <div className="hourlyWeather__innerContainer">
                 <div className="hourlyWeather__leftHeader">
-                    <p className="hourlyWeather__currentTemp">{currentTemp}</p>
+                    <p className="hourlyWeather__currentTemp">{currentTemp}°</p>
                     <p className="hourlyWeather__currentLocation">{currentLocation.name}</p>
                 </div>
                 <div className="hourlyWeather__rightHeader">

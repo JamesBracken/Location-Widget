@@ -34,7 +34,9 @@ function App() {
     <>
       <div className="overlay">
         <Greeting userDateTime={userDateTime} />
-        <p style={{ paddingBottom: 15 }}>Here are our provided widgets using location services</p>
+        <p style={{ paddingBottom: 15, marginLeft: 10, marginRight: 10 }}>Here are our provided widgets using location services</p>
+        </div>
+      <div className="overlay">
         <HourlyWeather
           hourlyWeatherData={hourlyWeatherData}
           currentWeatherData={currentWeatherData}
