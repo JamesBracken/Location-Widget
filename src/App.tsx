@@ -30,7 +30,7 @@ function App() {
 
   type WeatherForecastData = WeatherData["forecast"]["forecastday"];
   type CurrentWeatherData = WeatherData["current"];
-
+  
   console.log("weatherData: ", weatherData)
   // console.log("weatherForecastData: ", weatherForecastData)
   return (

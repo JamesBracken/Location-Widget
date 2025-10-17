@@ -18,6 +18,7 @@ export interface WeatherData {
             day: {
                 mintemp_c: number;
                 maxtemp_c: number;
+                daily_chance_of_rain: number;
                 condition: {
                     icon: string;
                 }

@@ -42,6 +42,5 @@ const DailyWeather = ({ currentWeatherData, currentLocation, weatherForecastData
         </div>
     )
 }
-{/* <DayWeather /> */ }
 
 export default DailyWeather;
