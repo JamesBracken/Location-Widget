@@ -1,9 +1,9 @@
 import Greeting from "./components/greeting/Greeting.tsx";
 import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 import DynamicBackground from './components/dynamicBackground/DynamicBackground.tsx';
+import DailyWeather from "./components/dailyWeather/DailyWeather.tsx";
 import { useWeather } from './hooks/useWeather.ts';
 import { useWeatherTimer } from "./hooks/useWeatherTimer.ts";
-
 import './styles/main.scss';
 
 import type { WeatherData } from "./types/WeatherData.ts"
@@ -13,6 +13,7 @@ function App() {
   const weatherData = useWeather({ currentDate });
   const userDateTime: Date = new Date();
   const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
+  const weatherForecastData: WeatherForecastData = weatherData?.forecast?.forecastday ?? [];
   const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
     condition: {
       text: "",
@@ -27,8 +28,11 @@ function App() {
     name: ""
   };
 
+  type WeatherForecastData = WeatherData["forecast"]["forecastday"];
   type CurrentWeatherData = WeatherData["current"];
-
+  
+  console.log("weatherData: ", weatherData)
+  // console.log("weatherForecastData: ", weatherForecastData)
   return (
     <>
       <div className="overlay">
@@ -41,6 +45,14 @@ function App() {
           currentWeatherData={currentWeatherData}
           currentLocation={currentLocationData}
           userDateTime={userDateTime} />
+      </div>
+      <div className="overlay">
+        <DailyWeather
+          currentWeatherData={currentWeatherData}
+          currentLocation={currentLocationData}
+          weatherForecastData={weatherForecastData}
+        />
+
       </div>
       <DynamicBackground
         currentCondition={currentWeatherData.condition.text}

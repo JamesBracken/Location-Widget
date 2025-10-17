@@ -15,7 +15,14 @@ export interface WeatherData {
         forecastday: {
             date: string;
             date_epoch: number;
-            day: object;
+            day: {
+                mintemp_c: number;
+                maxtemp_c: number;
+                daily_chance_of_rain: number;
+                condition: {
+                    icon: string;
+                }
+            };
             hour: {
                 temp_c: number;
                 condition: {
