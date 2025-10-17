@@ -13,6 +13,7 @@ function App() {
   const weatherData = useWeather({ currentDate });
   const userDateTime: Date = new Date();
   const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
+  const weatherForecastData: WeatherForecastData = weatherData?.forecast?.forecastday ?? [];
   const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
     condition: {
       text: "",
@@ -27,8 +28,11 @@ function App() {
     name: ""
   };
 
+  type WeatherForecastData = WeatherData["forecast"]["forecastday"];
   type CurrentWeatherData = WeatherData["current"];
 
+  console.log("weatherData: ", weatherData)
+  // console.log("weatherForecastData: ", weatherForecastData)
   return (
     <>
       <div className="overlay">
@@ -46,6 +50,7 @@ function App() {
         <DailyWeather
           currentWeatherData={currentWeatherData}
           currentLocation={currentLocationData}
+          weatherForecastData={weatherForecastData}
         />
 
       </div>

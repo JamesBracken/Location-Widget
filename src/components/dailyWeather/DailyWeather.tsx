@@ -1,20 +1,24 @@
 import { useState } from "react";
 
+import DayWeather from "../dayWeather/DayWeather";
 
 import type { WeatherData } from "../../types/WeatherData";
 
 type CurrentWeatherData = WeatherData["current"];
 type CurrentLocationData = WeatherData["location"];
+type WeatherForecastData = WeatherData["forecast"]["forecastday"];
 
 interface DailyWeatherProps {
     currentWeatherData: CurrentWeatherData,
     currentLocation: CurrentLocationData,
+    weatherForecastData: WeatherForecastData
 }
 
-const DailyWeather = ({ currentWeatherData, currentLocation }: DailyWeatherProps) => {
+const DailyWeather = ({ currentWeatherData, currentLocation, weatherForecastData }: DailyWeatherProps) => {
     const currentTemp: string = JSON.stringify(currentWeatherData.heatindex_c).slice(0, 2)
 
-
+    // console.log("currentWeatherData: ", currentWeatherData)
+    console.log("weatherForecastData: ", weatherForecastData)
 
     return (
         <div className="dailyWeather">
@@ -28,8 +32,16 @@ const DailyWeather = ({ currentWeatherData, currentLocation }: DailyWeatherProps
                     < p className="dailyWeather__conditionText" > {currentWeatherData.condition.text}</p >
                 </div>
             </div>
+            {weatherForecastData.map((weatherDayData, index) => {
+                return (<DayWeather
+                    key={index}
+                    weatherDayData={weatherDayData}
+                />)
+            })}
+
         </div>
     )
 }
+{/* <DayWeather /> */ }
 
 export default DailyWeather;
