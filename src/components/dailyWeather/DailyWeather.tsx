@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import DayWeather from "../dayWeather/DayWeather";
 
 import type { WeatherData } from "../../types/WeatherData";
