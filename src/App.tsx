@@ -1,9 +1,9 @@
 import Greeting from "./components/greeting/Greeting.tsx";
 import HourlyWeather from './components/hourlyWeather/HourlyWeather.tsx';
 import DynamicBackground from './components/dynamicBackground/DynamicBackground.tsx';
+import DailyWeather from "./components/dailyWeather/DailyWeather.tsx";
 import { useWeather } from './hooks/useWeather.ts';
 import { useWeatherTimer } from "./hooks/useWeatherTimer.ts";
-
 import './styles/main.scss';
 
 import type { WeatherData } from "./types/WeatherData.ts"
@@ -41,6 +41,13 @@ function App() {
           currentWeatherData={currentWeatherData}
           currentLocation={currentLocationData}
           userDateTime={userDateTime} />
+      </div>
+      <div className="overlay">
+        <DailyWeather
+          currentWeatherData={currentWeatherData}
+          currentLocation={currentLocationData}
+        />
+
       </div>
       <DynamicBackground
         currentCondition={currentWeatherData.condition.text}
