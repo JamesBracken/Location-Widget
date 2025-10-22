@@ -9,12 +9,9 @@ interface weatherDayDataProps {
 
 const DayWeather = ({ weatherDayData }: weatherDayDataProps) => {
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    console.log(weatherDayData)
-    console.log("Date: ", weekday[new Date(weatherDayData.date).getDay()].substring(0, 3))
     const day = weekday[new Date(weatherDayData.date).getDay()].substring(0, 3);
     const minTemp = Math.floor(weatherDayData.day.mintemp_c);
     const maxTemp = Math.floor(weatherDayData.day.maxtemp_c);
-    console.log("minTemp: ", minTemp)
     return (
         <div className="dayWeather">
             <p className="dayWeather__day">{day}</p>

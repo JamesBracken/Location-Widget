@@ -8,11 +8,10 @@ interface DynamicBackgroundProps {
 }
 
 const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) => {
-    
     const [backgroundImagePath, setBackgroundImagePath] = useState<string>("");
-    
+
     const base = import.meta.env.BASE_URL;
-    
+
     useEffect(() => {
         if (isDay === 1) {
 
@@ -45,6 +44,33 @@ const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) 
             }
         }
     }, [currentCondition, isDay])
+
+    useEffect(() => {
+        const overlayElementList = document.querySelectorAll<HTMLDivElement>(".overlay");
+        const bodyEl = document.querySelector<HTMLBodyElement>("body")
+        console.log(isDay)
+        if (isDay == 1) {
+            for (const element of overlayElementList) {
+                element.classList.remove("overlay-night")
+                console.log("overlayEl: ", element.classList)
+            }
+            if (bodyEl) {
+                bodyEl.classList.remove("white-text")
+            } else {
+                console.error("bodyEl element not found")
+            }
+        } else if (isDay == 0) {
+            for (const element of overlayElementList) {
+                element.classList.add("overlay-night")
+                console.log("overlayEl: ", element.classList)
+            }
+            if (bodyEl) {
+                bodyEl.classList.add("white-text")
+            } else {
+                console.error("bodyEl element not found")
+            }
+        }
+    }, [isDay])
     return (
         <div className="dynamicBackground">
             <img className="dynamicBackground__img" src={backgroundImagePath} alt={`${currentCondition} weather condition`} />
