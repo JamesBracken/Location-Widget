@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [Location Widget Application](#location-widget-application)
+   * [--> View the deployed verion here <--](#-view-the-deployed-verion-here-)
+   * [UX](#ux)
+      + [Strategy](#strategy)
+      + [Scope](#scope)
+      + [Local development](#local-development)
+   * [Technologies](#technologies)
+   * [Credits](#credits)
 
-Currently, two official plugins are available:
+<!-- TOC end -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- TOC --><a name="location-widget-application"></a>
+# Location Widget Application
 
-## React Compiler
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-1.77-CC6699?logo=sass&logoColor=white)
+![Agile](https://img.shields.io/badge/Agile-Methodology-orange)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<!-- TOC --><a name="-view-the-deployed-verion-here-"></a>
+## [--> View the deployed verion here <--](https://jamesbracken.github.io/Location-Widget/)
 
-## Expanding the ESLint configuration
+<!-- TOC --><a name="ux"></a>
+## UX
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<!-- TOC --><a name="strategy"></a>
+### Strategy
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The aim of the project is to create a responsive accessible widget which uses user location services and the [Weather API](https://www.weatherapi.com/) to provide information about local weather. 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+The project provides a hourly and 3 day(Limited because of Weather API free plan) forecast widgets which update in real time using React. Additionally the project sports dynamic background images according to the current weather and adjusts the overlay and text colors according to the time of day.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**General outline**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+![Image of the app](./public/images/readme/app-sample.png)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+<!-- TOC --><a name="scope"></a>
+### Scope
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This project was organized and scope was managed using a Github Kanban Board which can be accessed [here](https://github.com/users/JamesBracken/projects/21/views/2?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C227272141%2C%22Labels%22%2C227272140%2C227272139%5D).
+
+![Project kanban board](./public/images/readme/project-board.png)
+
+**Agile Methodology**
+
+This project followed an agile methodology approach to be able to reach an MVP prior to adding in extra features. We developed the project iteratively adding features one at a time.
+
+User Stories were used to organize, plan out and think from the perspective of our potential users. With this approach we were able to plot out a roadmap which we could use to develop our entire application.
+
+<!-- TOC --><a name="local-development"></a>
+### Local development
+
+**Quickstart**
+
+git clone https://github.com/YourName/location-widget.git
+
+cd location-widget
+
+npm install
+
+npm run dev
+
+**Cloning**
+Clone this repo with bash
+
+git clone https://github.com/JamesBracken/Location-Widget
+
+**Forking** 
+To fork this repository follow [These steps](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+
+
+<!-- TOC --><a name="technologies"></a>
+## Technologies
+
+- [VS Code](https://code.visualstudio.com/) ~ Used as my IDE 
+
+- ChatGPT ~ To aid in development
+
+<!-- TOC --><a name="credits"></a>
+## Credits
+
+A big thank you to Nology and my coach Remi Hoeppe, they provided the training and support needed to make this project possible.
