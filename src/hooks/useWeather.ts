@@ -27,7 +27,7 @@ export function useWeather({ currentDate }: useWeatherProps) {
             }, (exception) => {
                 Swal.fire({ // Sweetalert2 for graceful user feedback
                     title: 'Location permissions denied',
-                    text: 'The website may not function as intended without location permissions',
+                    text: 'The website may not function as accurately without location permissions',
                     icon: 'error',
                     confirmButtonText: 'I understand'
                 })
@@ -44,18 +44,38 @@ export function useWeather({ currentDate }: useWeatherProps) {
         }
     }, []);
     useEffect(() => {
-        if (location != null) {
-            const currentHour = currentDate.getHours();
-            if (!weatherData || new Date(weatherData.current.last_updated).getHours() != currentHour) {
-                try {
-                    fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`)
-                        .then(res => res.json())
-                        .then(data => setWeatherData(data))
-                } catch (e) {
-                    console.error(e)
+        const fetchWeather = async () => {
+            if (location != null) {
+                const currentHour = currentDate.getHours();
+                if (!weatherData || new Date(weatherData.current.last_updated).getHours() != currentHour) {
+                    try {
+                        const response = await fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`);
+                        const data = await response.json()
+                        setWeatherData(data);
+                    } catch (e) {
+                        console.error(e)
+                    }
+                }
+            } else if (location == null) {
+                const currentHour = currentDate.getHours();
+                let userIpAddress = "";
+                if (!weatherData || new Date(weatherData.current.last_updated).getHours() != currentHour) {
+                    try {
+                        const ipResponse = await fetch("https://api.ipify.org/?format=json");
+                        const ipData = await ipResponse.json();
+                        userIpAddress = await ipData.ip
+
+                        const weatherReponse = await fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${userIpAddress}&days=${daysRequest}&aqi=no&alerts=no`);
+                        const weatherData = await weatherReponse.json();
+                        console.log("weatherData:", weatherData)
+                        setWeatherData(weatherData);
+                    } catch {
+                        console.error("Error fetching user IP address and / or weather data")
+                    }
                 }
             }
         }
+        fetchWeather();
     }, ([location, currentDate]))
     return weatherData;
 }

@@ -15,9 +15,6 @@ interface DailyWeatherProps {
 const DailyWeather = ({ currentWeatherData, currentLocation, weatherForecastData }: DailyWeatherProps) => {
     const currentTemp: string = JSON.stringify(currentWeatherData.heatindex_c).slice(0, 2)
 
-    // console.log("currentWeatherData: ", currentWeatherData)
-    console.log("weatherForecastData: ", weatherForecastData)
-
     return (
         <div className="dailyWeather">
             <div className="dailyWeather__innerContainer">

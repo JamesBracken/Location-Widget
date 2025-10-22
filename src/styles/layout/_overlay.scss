@@ -1,5 +1,18 @@
 .overlay {
     background-image: linear-gradient(to bottom, #d0f0ff, #6db3f2 );
+    transition: 1s;
+    opacity: 0.93;
+    margin: 10px;
+    padding: 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    border-radius: 20px;
+}
+
+.overlay-night {
+    background-image: linear-gradient(to bottom, #237296, #083052 );
+    transition: 1s;
     opacity: 0.93;
     margin: 10px;
     padding: 10px 10px;

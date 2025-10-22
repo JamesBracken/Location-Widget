@@ -30,9 +30,7 @@ function App() {
 
   type WeatherForecastData = WeatherData["forecast"]["forecastday"];
   type CurrentWeatherData = WeatherData["current"];
-  
-  console.log("weatherData: ", weatherData)
-  // console.log("weatherForecastData: ", weatherForecastData)
+
   return (
     <>
       <div className="overlay">
@@ -52,7 +50,6 @@ function App() {
           currentLocation={currentLocationData}
           weatherForecastData={weatherForecastData}
         />
-
       </div>
       <DynamicBackground
         currentCondition={currentWeatherData.condition.text}

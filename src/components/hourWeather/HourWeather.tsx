@@ -7,11 +7,12 @@ interface HourWeatherDataProps {
 
 const HourWeather = ({ hourWeatherData }: HourWeatherDataProps) => {
     const time = hourWeatherData.time.slice(11, 13);
+    const temperature = Math.floor(hourWeatherData.temp_c)
     return (
         <div className="hourWeather">
             <p className="hourWeather__time">{time}</p>
             <img className="hourWeather__image" src={hourWeatherData.condition.icon} />
-            <p className="hourWeather__temp">{hourWeatherData.temp_c}°</p>
+            <p className="hourWeather__temp">{temperature}°</p>
         </div>
     )
 }
