@@ -15,7 +15,7 @@ interface HourlyWeatherDataProps {
 
 const HourlyWeather = ({ hourlyWeatherData, currentWeatherData, currentLocation, userDateTime }: HourlyWeatherDataProps) => {
     const currentTemp: string = JSON.stringify(currentWeatherData.heatindex_c).slice(0, 2)
-    const filteredData = hourlyWeatherData.filter(item => {
+    const filteredData: HourlyWeatherData = hourlyWeatherData.filter(item => {
         const itemDateTime = new Date(item.time);
         if (itemDateTime.getDate > userDateTime.getDate) return true; 
         return itemDateTime.getHours() >= userDateTime.getHours()

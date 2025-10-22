@@ -10,7 +10,7 @@ interface DynamicBackgroundProps {
 const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) => {
     const [backgroundImagePath, setBackgroundImagePath] = useState<string>("");
 
-    const base = import.meta.env.BASE_URL;
+    const base: string = import.meta.env.BASE_URL;
 
     useEffect(() => {
         if (isDay === 1) {
@@ -48,7 +48,7 @@ const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) 
     useEffect(() => {
         const overlayElementList = document.querySelectorAll<HTMLDivElement>(".overlay");
         const bodyEl = document.querySelector<HTMLBodyElement>("body")
-        if (isDay == 1) {
+        if (isDay === 1) {
             for (const element of overlayElementList) {
                 element.classList.remove("overlay-night")
             }
@@ -57,7 +57,7 @@ const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) 
             } else {
                 console.error("bodyEl element not found")
             }
-        } else if (isDay == 0) {
+        } else if (isDay === 0) {
             for (const element of overlayElementList) {
                 element.classList.add("overlay-night")
             }

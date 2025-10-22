@@ -6,8 +6,8 @@ interface HourWeatherDataProps {
 }
 
 const HourWeather = ({ hourWeatherData }: HourWeatherDataProps) => {
-    const time = hourWeatherData.time.slice(11, 13);
-    const temperature = Math.floor(hourWeatherData.temp_c)
+    const time: string = hourWeatherData.time.slice(11, 13);
+    const temperature: number = Math.floor(hourWeatherData.temp_c)
     return (
         <div className="hourWeather">
             <p className="hourWeather__time">{time}</p>
