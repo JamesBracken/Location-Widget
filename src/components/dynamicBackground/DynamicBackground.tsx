@@ -48,11 +48,9 @@ const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) 
     useEffect(() => {
         const overlayElementList = document.querySelectorAll<HTMLDivElement>(".overlay");
         const bodyEl = document.querySelector<HTMLBodyElement>("body")
-        console.log(isDay)
         if (isDay == 1) {
             for (const element of overlayElementList) {
                 element.classList.remove("overlay-night")
-                console.log("overlayEl: ", element.classList)
             }
             if (bodyEl) {
                 bodyEl.classList.remove("white-text")
@@ -62,7 +60,6 @@ const DynamicBackground = ({ currentCondition, isDay }: DynamicBackgroundProps) 
         } else if (isDay == 0) {
             for (const element of overlayElementList) {
                 element.classList.add("overlay-night")
-                console.log("overlayEl: ", element.classList)
             }
             if (bodyEl) {
                 bodyEl.classList.add("white-text")
