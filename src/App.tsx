@@ -8,11 +8,16 @@ import './styles/main.scss';
 
 import type { WeatherData } from "./types/WeatherData.ts"
 
+type WeatherForecastData = WeatherData["forecast"]["forecastday"];
+type CurrentWeatherData = WeatherData["current"];
+type HourlyWeatherData = WeatherData["forecast"]["forecastday"][number]["hour"] | []
+type CurrentLocationData = WeatherData["location"];
+
 function App() {
   const currentDate: Date = useWeatherTimer();
-  const weatherData = useWeather({ currentDate });
+  const weatherData: WeatherData | null = useWeather({ currentDate });
   const userDateTime: Date = new Date();
-  const hourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
+  const hourlyWeatherData: HourlyWeatherData = weatherData?.forecast?.forecastday?.[0]?.hour ?? [];
   const weatherForecastData: WeatherForecastData = weatherData?.forecast?.forecastday ?? [];
   const currentWeatherData: CurrentWeatherData = weatherData?.current ?? {
     condition: {
@@ -24,12 +29,10 @@ function App() {
     last_updated: ""
   };
 
-  const currentLocationData = weatherData?.location ?? {
+  const currentLocationData: CurrentLocationData = weatherData?.location ?? {
     name: ""
   };
 
-  type WeatherForecastData = WeatherData["forecast"]["forecastday"];
-  type CurrentWeatherData = WeatherData["current"];
 
   return (
     <>

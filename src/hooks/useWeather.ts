@@ -4,8 +4,12 @@ import Swal from "sweetalert2";
 
 import type { WeatherData } from "../types/WeatherData";
 
+// type WeatherData = WeatherData;
 interface useWeatherProps {
     currentDate: Date
+}
+interface IpData {
+    ip : string
 }
 
 export function useWeather({ currentDate }: useWeatherProps) {
@@ -13,7 +17,7 @@ export function useWeather({ currentDate }: useWeatherProps) {
     const [location, setLocation] = useState<{ latitude: number, longitude: number } | null>(null);
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
-    const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+    const API_KEY: string = import.meta.env.VITE_WEATHER_API_KEY;
     const WEATHER_API_URL: string = "https://api.weatherapi.com/v1/forecast.json?"
     const daysRequest: number = 3;// Weather API free plan has a limit of 3 days data
 
@@ -44,30 +48,29 @@ export function useWeather({ currentDate }: useWeatherProps) {
         }
     }, []);
     useEffect(() => {
-        const fetchWeather = async () => {
-            if (location != null) {
-                const currentHour = currentDate.getHours();
+        const fetchWeather = async (): Promise<void> => {
+            if (location !== null) {
+                const currentHour: number = currentDate.getHours();
                 if (!weatherData || new Date(weatherData.current.last_updated).getHours() != currentHour) {
                     try {
-                        const response = await fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`);
-                        const data = await response.json()
+                        const response: Response = await fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${location.latitude},${location.longitude}&days=${daysRequest}&aqi=no&alerts=no`);
+                        const data: WeatherData = await response.json()
                         setWeatherData(data);
                     } catch (e) {
                         console.error(e)
                     }
                 }
-            } else if (location == null) {
-                const currentHour = currentDate.getHours();
-                let userIpAddress = "";
-                if (!weatherData || new Date(weatherData.current.last_updated).getHours() != currentHour) {
+            } else if (location === null) {
+                const currentHour: number = currentDate.getHours();
+                let userIpAddress: string = "";
+                if (!weatherData || new Date(weatherData.current.last_updated).getHours() !== currentHour) {
                     try {
-                        const ipResponse = await fetch("https://api.ipify.org/?format=json");
-                        const ipData = await ipResponse.json();
-                        userIpAddress = await ipData.ip
+                        const ipResponse: Response = await fetch("https://api.ipify.org/?format=json");
+                        const ipData: IpData = await ipResponse.json();
+                        userIpAddress = ipData.ip
 
-                        const weatherReponse = await fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${userIpAddress}&days=${daysRequest}&aqi=no&alerts=no`);
-                        const weatherData = await weatherReponse.json();
-                        console.log("weatherData:", weatherData)
+                        const weatherReponse: Response = await fetch(`${WEATHER_API_URL}key=${API_KEY}&q=${userIpAddress}&days=${daysRequest}&aqi=no&alerts=no`);
+                        const weatherData: WeatherData = await weatherReponse.json();
                         setWeatherData(weatherData);
                     } catch {
                         console.error("Error fetching user IP address and / or weather data")
