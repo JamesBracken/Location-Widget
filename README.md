@@ -29,6 +29,8 @@
 <!-- TOC --><a name="strategy"></a>
 ### Strategy
 
+The project was developed in a very mopdular manner to implement enterprise application best practices following a modular development approach overall, SASS BEM paired with 7-1 architecture and Container component architecture for React.
+
 The aim of the project is to create a responsive accessible widget which uses user location services and the [Weather API](https://www.weatherapi.com/) to provide information about local weather. 
 
 The project provides a hourly and 3 day(Limited because of Weather API free plan) forecast widgets which update in real time using React. Additionally the project sports dynamic background images according to the current weather and adjusts the overlay and text colors according to the time of day.
@@ -75,9 +77,16 @@ To fork this repository follow [These steps](https://docs.github.com/en/pull-req
 <!-- TOC --><a name="technologies"></a>
 ## Technologies
 
-- [VS Code](https://code.visualstudio.com/) ~ Used as my IDE 
+- [React](https://react.dev/) – A powerful JavaScript library used to build dynamic and responsive interfaces. Used to create modular, reusable components for the location widget’s frontend.
 
-- ChatGPT ~ To aid in development
+- [SASS (SCSS)](https://sass-lang.com/) – A CSS preprocessor that adds variables, nesting, and modular styling. Enables clean, reusable, and themeable styles for consistent UI design.
+
+- [TypeScript](https://www.typescriptlang.org/) – A JavaScript superset that enhances code reliability, maintainability, and scalability. It provides strong type safety and better developer tooling.
+
+- [VS Code](https://code.visualstudio.com/) – Used as my IDE for writing and managing the project.
+
+- [ChatGPT](https://chat.openai.com/) – Used to assist with development, documentation, and troubleshooting.
+
 
 <!-- TOC --><a name="credits"></a>
 ## Credits
