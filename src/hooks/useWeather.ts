@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 
 import type { WeatherData } from "../types/WeatherData";
 
-// type WeatherData = WeatherData;
 interface useWeatherProps {
     currentDate: Date
 }

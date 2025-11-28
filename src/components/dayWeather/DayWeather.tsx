@@ -24,9 +24,3 @@ const DayWeather = ({ weatherDayData }: weatherDayDataProps) => {
 }
 
 export default DayWeather;
-
-// MAYBE
-
-// daily_chance_of_rain
-//
-// 
